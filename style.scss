@@ -1,0 +1,221 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.header {    
+  line-height: 23px;
+  display: flex;  
+  width: 100%;
+  max-width: 1440px;
+  background-color: #c1e9e9;
+  margin: 0 auto;  
+  height: 48px;
+  flex-direction: row;
+  align-items: center;  
+    &--button_menu {
+      width: 18px;
+      height: 12px;
+      margin: 0 36px 0 20px;
+      border: none;
+      background: url('./assets/images/Shape_menu.svg') no-repeat;
+      cursor: pointer;
+    }
+    &--title {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      margin: 0 auto 0 0;
+    }
+    &--button_option {
+      width: 4px;
+      height: 16px;
+      margin: 0 20px 0 5px;
+      border: none;
+      background: url('./assets/images/Shape_option.svg') no-repeat;
+      cursor: pointer;
+    }
+}
+
+.main {
+  display: grid;
+  width: 100%;
+  max-width: 1440px;  
+  margin: 50px auto 0 auto;  
+  grid-row-gap: 50px; 
+  grid-template-columns: 240px 512px 240px;
+  justify-content: space-between;
+  .main_div {
+    box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.251);
+  }
+}
+
+.menu_tools--btn_fill_bucket { 
+  background: url("./assets/images/icon-fill_bucket.svg") no-repeat;
+}
+
+.menu_tools--btn_choose_color { 
+  background: url("./assets/images/icon-choose_color.svg") no-repeat;
+}
+
+.menu_tools--btn_pencil {
+  background: url("./assets/images/icon-pencil.svg") no-repeat;
+}
+
+.tools_wrapper {
+  align-self: start;
+  width: 200px;
+  height: 246px;
+  margin-left: 15px;
+  grid-row: 2;
+  grid-column: 1;
+  .menu_tools{
+    list-style: none;
+  }  
+}
+
+.canvas_wrapper {
+  width: 512px;
+  height: 512px;    
+  grid-row: 2/4;
+  grid-column: 2;
+}
+
+canvas{
+  width: 512px;
+  height: 512px;
+  image-rendering: pixelated;
+}
+
+.form_canvas {
+  width: 512px; 
+  grid-row: 1;
+  grid-column: 2;  
+  display: flex;
+  height: 40px;
+  margin: 0px 0px -40px 0;
+  position: relative;  
+  width: 512px;
+  .input{
+    border: none;
+    outline: none; 
+  }
+  
+  &--input {
+    margin: 0 auto 0 25px;    
+    width: 260px;
+    padding: 8px 37px 9px 15px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1), inset 0 1px 2px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    background: #EEE;
+    font: 13px Tahoma, Arial, sans-serif;
+    color: #555;          
+  }  
+  &--input:focus{
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2), inset 0 1px 2px rgba(0,0,0,0.4);
+    background: #E8E8E8;
+    color: #333;
+  }  
+  &--btn {
+    background-color: rgb(107, 243, 220);
+    border-radius: 4px;
+    width: 60px;
+    color: white;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+}
+
+.size_wrapper {
+  justify-self: right;
+  width: 200px;
+  height: 246px;
+  margin-right: 15px;
+  grid-row: 2;
+  grid-column: 3;  
+}
+
+.color_wrapper {
+  align-self: start;
+  width: 200px;
+  height: 246px;
+  margin-left: 15px;
+  grid-row: 3;
+  grid-column: 1; 
+}
+
+.menu_color {
+  &--li {
+    position: relative;
+  } 
+  &--div_color {    
+    cursor: pointer;
+    height: 20px;
+    width: 20px;    
+    border-radius: 10px;
+    border: black solid 1px;
+    position: absolute;
+    top: 15px;
+    left: 20px;}
+    }
+
+#red {
+  background-color: #ff0000;
+}
+
+#blue {
+  background-color: #0000ff;
+}
+
+.list{
+  list-style: none;
+}
+
+.button {
+  width: 200px;
+  height: 54px;
+  border: none;    
+  padding-left: 55px;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  background-position: 16px 16px; 
+  background-color: inherit; 
+}
+
+.button:hover {
+  background-color:#e3ecf0;
+}
+
+.clickBtn {
+  background-color:#e3ecf0;
+  color: blue;
+  font-size: 23px; 
+  border-radius: 10px; 
+}
+#current_color_label{
+  display: inline-block;  
+  padding: 0;
+  padding-left: 50px; 
+  width: 150px; 
+  line-height: 50px;
+}
+
+#current_color_input {
+  padding-left: 0;
+  height: 0;
+  width: 0;
+  border: none;
+  outline: none;
+  background: #f5deb3;
+}
+
+
+

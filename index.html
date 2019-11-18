@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Codejam-palette</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <button class="header--button_menu"></button>
+    <h1 class="header--title">CodeJam - Pallete</h1>
+    <button class="header--button_option"></button>
+  </header>
+  <main class="main">
+      <form action="" class="form_canvas">
+        <input type="button" id="load" class="input form_canvas--btn" value="Load" ></input>         
+        <input type="search" id="input" placeholder="поиск" class="input form_canvas--input" value="Minsk"/>
+        <input type="button" class="input form_canvas--btn" value="B&W" ></input>
+      </form>
+    <div class="main_div tools_wrapper">
+      <ul class="list menu_tools">
+        <li>
+          <button class="button menu_tools--btn_fill_bucket">Fill bucket</button>      
+        </li>
+        <li>
+          <button class="button menu_tools--btn_choose_color">Choose color</button>      
+        </li>
+        <li>
+          <button class="button menu_tools--btn_pencil clickBtn">Pencil</button>      
+        </li>
+        
+      </ul>  
+    </div>
+    <div class="main_div canvas_wrapper">
+      <canvas id="canvas">
+      </canvas>    
+    </div>
+    <div class="main_div size_wrapper">
+    <ul class="list menu_size">
+      <li>
+        <button id="btnSize128" class="button menu_size--btn128">128x128</button>       
+      </li>
+      <li>
+        <button id="btnSize256" class="button menu_size--btn256">256x256</button> 
+      </li>
+      <li>
+        <button id="btnSize512" class="button menu_size--btn512">512x512</button> 
+      </li>
+    </ul>
+    </div>
+    <div class="main_div color_wrapper">
+      <ul class="list menu_color">
+        <li class="menu_color--li">
+          <div class="menu_color--div_color" id="current_color"></div>
+            <label  class="button clickBtn" id="current_color_label">
+              <input class="button" type="color" id="current_color_input" name="current_color_input" value="#e66465"> 
+                Current_color 
+            </label>
+        </li>
+        <li class="menu_color--li">
+            <div class="menu_color--div_color" id="prev_color"></div>
+          <button class="button menu_color--btn_prev_color">Prev color</button>      
+        </li>
+        <li class="menu_color--li">
+          <div class="menu_color--div_color" id="red"></div>
+          <button class="button menu_color--btn_red">Red</button>      
+        </li>
+        <li class="menu_color--li">
+          <div class="menu_color--div_color" id="blue"></div>
+          <button class="button menu_color--btn_blue">Blue</button>      
+        </li>
+      </ul>  
+    </div>
+  </main>
+  <script src="script.js"></script>    
+</body>
+</html>
