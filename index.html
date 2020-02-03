@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Codejam-palette</title>
+  <title>Codejam-image-api</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,15 +22,14 @@
     <div class="main_div tools_wrapper">
       <ul class="list menu_tools">
         <li>
-          <button class="button menu_tools--btn_fill_bucket">Fill bucket</button>      
+          <div id="bucket" class="menu_tools--item btn_fill_bucket" title="Fill bucket (F)">Fill bucket</div>     
         </li>
         <li>
-          <button class="button menu_tools--btn_choose_color">Choose color</button>      
+          <div id="picker" class="menu_tools--item btn_choose_color" title="Color picker (C)">Choose color</div>       
         </li>
         <li>
-          <button class="button menu_tools--btn_pencil clickBtn">Pencil</button>      
-        </li>
-        
+          <div id="pencil" class="menu_tools--item btn_pencil selected" title="Pencil (P)">Pencil</div>
+        </li>        
       </ul>  
     </div>
     <div class="main_div canvas_wrapper">
@@ -40,36 +39,35 @@
     <div class="main_div size_wrapper">
     <ul class="list menu_size">
       <li>
-        <button id="btnSize128" class="button menu_size--btn128">128x128</button>       
+        <div id="buttonCanvasSize128" class="menu_size--item menu_size--btn128">128x128</div>       
       </li>
       <li>
-        <button id="btnSize256" class="button menu_size--btn256">256x256</button> 
+        <div id="buttonCanvasSize256" class="menu_size--item menu_size--btn256">256x256</div> 
       </li>
       <li>
-        <button id="btnSize512" class="button menu_size--btn512">512x512</button> 
+        <div id="buttonCanvasSize512" class="menu_size--item menu_size--btn512">512x512</div> 
       </li>
     </ul>
     </div>
     <div class="main_div color_wrapper">
-      <ul class="list menu_color">
-        <li class="menu_color--li">
-          <div class="menu_color--div_color" id="current_color"></div>
-            <label  class="button clickBtn" id="current_color_label">
-              <input class="button" type="color" id="current_color_input" name="current_color_input" value="#e66465"> 
-                Current_color 
-            </label>
+      <ul class="menu_color">
+        <li id="currentColor" class="menu_color--item selected">          
+            <span class="menu_color--item_text">Current color</span>
+             <label id="currentColorBackground" class="menu_color--color"> 
+                <input type="color" id="inputColor" class="palette--input"> 
+             </label>
         </li>
-        <li class="menu_color--li">
-            <div class="menu_color--div_color" id="prev_color"></div>
-          <button class="button menu_color--btn_prev_color">Prev color</button>      
+        <li id="prevColor" class="menu_color--item">
+          <span class="menu_color--item_text">Prev color</span> 
+          <div id="prevColorBackground" class="menu_color--color" ></div>             
         </li>
-        <li class="menu_color--li">
-          <div class="menu_color--div_color" id="red"></div>
-          <button class="button menu_color--btn_red">Red</button>      
+        <li id="redColor" class="menu_color--item"> 
+          <span class="menu_color--item_text">Red</span>
+          <div id="redColorBackground" class="menu_color--color" ></div>   
         </li>
-        <li class="menu_color--li">
-          <div class="menu_color--div_color" id="blue"></div>
-          <button class="button menu_color--btn_blue">Blue</button>      
+        <li id="blueColor" class="menu_color--item">
+          <span class="menu_color--item_text">blue</span>
+          <div id="blueColorBackground" class="menu_color--color" ></div>  
         </li>
       </ul>  
     </div>
