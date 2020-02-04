@@ -109,6 +109,7 @@ canvas{
 }
 
 .form_canvas {
+  position: relative;
   width: 512px; 
   grid-row: 1;
   grid-column: 2;  
@@ -117,12 +118,22 @@ canvas{
   margin: 0px 0px -40px 0;
   position: relative;  
   width: 512px;
+  &--alert {
+    position: absolute;
+    display: none;
+    font-size: 0.6em;
+    font-family: Arial;
+    color: #d62f2f;
+    left: 100px;
+    z-index: 10;
+  }
   .input{
     border: none;
     outline: none; 
   }
   
   &--input {
+    position: relative;
     margin: 0 auto 0 25px;    
     width: 260px;
     padding: 8px 37px 9px 15px;

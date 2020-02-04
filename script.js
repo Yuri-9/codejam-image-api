@@ -28,6 +28,7 @@ let colorSelected = colors.currentColor;
 
 
 (function renderLocalStorage() {
+  console.log(canvasSize);
   document.getElementById(`buttonCanvasSize${canvasSize}`).classList.add('selected');
   document.getElementById('currentColorBackground').style.background = colors.currentColor;
   document.getElementById('prevColorBackground').style.background = colors.prevColor;
@@ -208,13 +209,48 @@ function fillColor(event) {
   ctx.putImageData(canvasData, 0, 0);
 }
 
-async function loadImage() {
-  const img = new Image();
-  const valueInput = document.querySelector('#input').value;
-  const link = `https://api.unsplash.com/photos/random?query=town,${valueInput}&client_id=7b76a47280b1e328889c12e58cfac9f74a7b39257fe1b4d8a8a4ddb681e74211`;
+function getPlaceName(namePlace) {
+  return fetch(`https://api.opencagedata.com/geocode/v1/json?q=${namePlace}&key=44b11e6afc0642b3aff01b4b2a080437&language=en`).then((res) => res.json());
+}
 
-  const { urls } = await fetch(link).then((res) => res.json());
+async function getCurrentPlaceName(valueInput) {
+  const loc = await getPlaceName(valueInput);
+  if (!loc.results.length) {
+    return;
+  }
+  const {
+    city, state, county,
+  } = loc.results[0].components;
+  // eslint-disable-next-line consistent-return
+  return city || county || state || ' ';
+}
+
+function getImage(namePlace) {
+  return fetch(`https://api.unsplash.com/photos/random?query=town,${namePlace}&client_id=7b76a47280b1e328889c12e58cfac9f74a7b39257fe1b4d8a8a4ddb681e74211`).then((res) => {
+    if (res.status !== 200) {
+      console.log('Number of requests image exceeded');
+    }
+    return res.json();
+  });
+}
+
+async function loadImage() {
+  document.querySelector('.form_canvas--alert').style.display = 'none';
+  const img = new Image();
+  const valueInput = document.getElementById('input').value;
+  const namePlace = await getCurrentPlaceName(valueInput);
+  if (!namePlace) {
+    const elemAlert = document.querySelector('.form_canvas--alert');
+    elemAlert.style.display = 'block';
+    return;
+  }
+
+  const res = await getImage(namePlace);
+  if (!res) { return; }
+  const { urls } = res;
+
   img.src = urls.small;
+
   img.crossOrigin = 'Anonymous';
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   img.onload = () => { drawImageOnCanvas(img); };
@@ -227,7 +263,7 @@ function mousedownHandler(event) {
   if (toolSelected === 'pencil') { drawPencil(event); }
 }
 
-document.querySelector('#load').onclick = loadImage;
+document.getElementById('load').addEventListener('click', loadImage);
 
 canvas.addEventListener('mousemove', drawPencil);
 canvas.addEventListener('mouseup', () => { isDrawing = false; });
@@ -237,6 +273,13 @@ document.querySelector('.menu_tools').addEventListener('mousedown', setTools);
 document.querySelector('.menu_color').addEventListener('mousedown', setColor);
 document.querySelector('.menu_size').addEventListener('mousedown', chooseSize);
 
-window.addEventListener('keydown', setToolsKeyboard);
+window.addEventListener('keydown', (event) => {
+  setToolsKeyboard(event);
+  document.querySelector('.form_canvas--alert').style.display = 'none';
+  if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+    loadImage();
+  }
+});
+
 window.addEventListener('beforeunload', saveSession);
 window.addEventListener('input', getInputColor);
